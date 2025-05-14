@@ -24,7 +24,7 @@
                 <td th:text="${pessoa.nome}"></td>
                 <td th:text="${pessoa.idade}"></td>
                 <td>
-                    <a thhref="@{/pessoas/{id}(id=${pessoa.id})}">Detalhes</a>
+                    <a th:href="@{/pessoas/{id}(id=${pessoa.id})}">Detalhes</a>
                 </td>
             </tr>
         </tbody>
