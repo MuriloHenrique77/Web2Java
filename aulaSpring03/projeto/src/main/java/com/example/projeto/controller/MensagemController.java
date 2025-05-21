@@ -10,12 +10,12 @@ import com.example.projeto.service.MensagemService;
 public class MensagemController {
     private final MensagemService mensagemService;
 
-    public MensagemController(MensagemService mensagemService) {
+    public MensagemController(MensagemService mensagemService){
         this.mensagemService = mensagemService;
     }
 
     @GetMapping("/mensagem")
-    public String obterMensagem() {
+    public String obterMensagem(){
         return mensagemService.obterMensagem();
     }
 }

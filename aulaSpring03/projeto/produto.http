@@ -1,5 +1,5 @@
-# Definição de base_url (mesmo ambiente “local” do seu REST Client)
-@base_url = https://laughing-trout-wr97wvvq97qjfg44x-8080.app.github.dev
+# Definição de variáveis (ambiente “local” do REST Client)
+@base_url = https://fantastic-enigma-7vr64vp69j653xg9g-8080.app.github.dev
 
 ### Inserir novo produto
 POST {{ base_url }}/api/produtos
@@ -8,14 +8,14 @@ Content-Type: application/json
 {
   "nome": "Notebook",
   "quantidade": 10,
-  "valor": 3499.90
+  "valor": 3899.99
 }
 
 ### Listar todos os produtos
 GET {{ base_url }}/api/produtos
 Accept: application/json
 
-### Buscar produto por ID
+### Buscar produtos por ID
 GET {{ base_url }}/api/produtos/1
 Accept: application/json
 
@@ -24,11 +24,11 @@ PUT {{ base_url }}/api/produtos/1
 Content-Type: application/json
 
 {
-  "nome": "Notebook Gamer",
-  "quantidade": 5,
-  "valor": 4899.50
+  "nome": "Notebook",
+  "quantidade": 09,
+  "valor" : 5899.90 
 }
 
-### Remover produto (DELETE)
+### Remover pessoa (DELETE)
 DELETE {{ base_url }}/api/produtos/1
 Accept: */*

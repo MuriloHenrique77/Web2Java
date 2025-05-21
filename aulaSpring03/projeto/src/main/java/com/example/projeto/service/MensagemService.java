@@ -5,15 +5,13 @@ import com.example.projeto.repository.MensagemRepository;
 
 @Service
 public class MensagemService {
-    
     private final MensagemRepository mensagemRepository;
 
-    public MensagemService(MensagemRepository mensagemRepository) {
+    public MensagemService(MensagemRepository mensagemRepository){
         this.mensagemRepository = mensagemRepository;
     }
 
-    public String obterMensagem() {
+    public String obterMensagem(){
         return mensagemRepository.obterMensagem();
     }
-    
 }

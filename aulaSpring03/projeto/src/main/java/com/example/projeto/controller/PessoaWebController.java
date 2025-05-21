@@ -16,49 +16,52 @@ import org.springframework.http.HttpStatus;
 
 @Controller
 @RequestMapping("/pessoas")
-public class PessoaWebController{
-    
+public class PessoaWebController {
+
     private final PessoaService pessoaService;
 
-    public PessoaWebController(PessoaService pessoaService){
+    public PessoaWebController(PessoaService pessoaService) {
         this.pessoaService = pessoaService;
     }
 
-    //Mapeia Get /pessoas -> redireciona para /pessoas/listar
+    // Mapeia GET /pessoas → redireciona para /pessoas/listar
     @GetMapping
-    public String index(){
+    public String index() {
         return "redirect:/pessoas/listar";
     }
 
-    //1. Página de cadastro
+    // 1. Página de cadastro
     @GetMapping("/cadastrar")
-    public String exibirFormCadastro(Model model){
+    public String exibirFormCadastro(Model model) {
         model.addAttribute("pessoa", new Pessoa());
         return "pessoas/form";
     }
 
     @PostMapping("/cadastrar")
-    public String cadastrarPessoa(@Valid @ModelAttribute("pessoa") Pessoa pessoa, BindingResult result,
-        RedirectAttributes ra){
-        if(result.hasErrors()){
-            //repopula o objeto no formulário em caso de erro
+    public String cadastrarPessoa(
+            @Valid @ModelAttribute("pessoa") Pessoa pessoa,
+            BindingResult result,
+            RedirectAttributes ra) {
+
+        if (result.hasErrors()) {
+            // repopula o objeto no formulário em caso de erro
             return "pessoas/form";
         }
         pessoaService.salvarPessoa(pessoa);
-        ra.addFlashAttribute("sucesso", "Pessoa cadastrada com sucesso!");
+        ra.addFlashAttribute("success", "Pessoa cadastrada com sucesso!");
         return "redirect:/pessoas/listar";
     }
 
-    //2. Página de listagem
+    // 2. Página de listagem
     @GetMapping("/listar")
-    public String listarPessoas(Model model){
+    public String listarPessoas(Model model) {
         model.addAttribute("lista", pessoaService.listarPessoas());
         return "pessoas/lista";
     }
 
-    //3. Detalhes e exclusão
+    // 3. Detalhes e exclusão
     @GetMapping("/{id}")
-    public String detalhesPessoa(@PathVariable Long id, Model model){
+    public String detalhesPessoa(@PathVariable Long id, Model model) {
         Pessoa p = pessoaService.buscarPorId(id)
             .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Pessoa não encontrada, id: " + id
@@ -67,9 +70,10 @@ public class PessoaWebController{
         return "pessoas/detalhe";
     }
 
-    public String excluirPessoa(@PathVariable Long id, RedirectAttributes ra){
+    @PostMapping("/{id}/excluir")
+    public String excluirPessoa(@PathVariable Long id, RedirectAttributes ra) {
         pessoaService.deletarPessoa(id);
-        ra.addAttribute("sucesso", "Pessoa excluída com sucesso");
+        ra.addFlashAttribute("success", "Pessoa excluída com sucesso!");
         return "redirect:/pessoas/listar";
     }
 }

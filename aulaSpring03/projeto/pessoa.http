@@ -1,13 +1,13 @@
 # Definição de variáveis (ambiente “local” do REST Client)
-@base_url = https://curly-fiesta-5jq9q456p9vh76pv-8080.app.github.dev
+@base_url = https://fantastic-enigma-7vr64vp69j653xg9g-8080.app.github.dev
 
 ### Inserir nova pessoa
 POST {{ base_url }}/api/pessoas
 Content-Type: application/json
 
 {
-  "nome": "Gabriel",
-  "idade": 28
+  "nome": "Rafael",
+  "idade": 34
 }
 
 ### Listar todas as pessoas
